@@ -1,0 +1,532 @@
+/* ==========================================================
+   style.css : page d'accueil (index.html)
+   ========================================================== */
+
+/* 1. Variables */
+:root {
+    --encre: #0B1B2B;
+    --encre-2: #102338;
+    --papier: #F3F6F9;
+    --texte: #1D2B3A;
+    --gris: #5B6B7C;
+    --bordure: #DDE5EC;
+
+    --disp: #D9481F;
+    --trans: #2358E6;
+    --emerg: #0B8A63;
+    --disp-clair: #FF6B3D;
+    --trans-clair: #4D8DFF;
+    --emerg-clair: #2FD6A0;
+
+    --titre: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+    --corps: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* 2. Réglages généraux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--corps);
+    background-color: var(--papier);
+    color: var(--texte);
+    line-height: 1.7;
+}
+
+::selection {
+    background: var(--trans-clair);
+    color: #fff;
+}
+
+a:focus-visible {
+    outline: 3px solid var(--trans-clair);
+    outline-offset: 3px;
+}
+
+abbr[title] {
+    text-decoration: underline dotted;
+    cursor: help;
+}
+
+/* 3. En-tête : fond quadrillé façon papier millimétré */
+header {
+    background-color: var(--encre);
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+    color: #fff;
+    padding: 28px 6% 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.marque {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--titre);
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.marque img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+}
+
+.bandeau {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 48px;
+}
+
+.titre {
+    flex: 1 1 380px;
+    max-width: 620px;
+    animation: entree 0.9s ease both;
+}
+
+h1 {
+    font-family: var(--titre);
+    font-size: clamp(2rem, 4.6vw, 3.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+}
+
+.titre p {
+    font-size: 1.15rem;
+    color: #C5D2DF;
+    max-width: 52ch;
+}
+
+.banniere1 {
+    flex: 1 1 340px;
+    max-width: 560px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+/* 4. Navigation : un point de couleur par catégorie */
+nav {
+    background-color: var(--encre-2);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #E8EEF4;
+    text-decoration: none; 
+    padding: 9px 16px;
+    border-radius: 8px;
+    transition: background-color 0.25s, transform 0.25s;
+}
+
+nav a::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #8FA3B7;
+    transition: transform 0.25s;
+}
+nav a:hover::before {
+    transform: scale(1.5);
+}
+nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+nav a.actif {
+    box-shadow: inset 0 -3px 0 var(--trans-clair);
+}
+
+nav .c-disp::before {
+    background: var(--disp-clair);
+}
+
+nav .c-trans::before {
+    background: var(--trans-clair);
+}
+
+nav .c-emerg::before {
+    background: var(--emerg-clair);
+}
+
+/* 5. Contenu principal */
+main {
+    width: 92%;
+    max-width: 1100px;
+    margin: 44px auto;
+}
+
+section {
+    background: #fff;
+    border: 1px solid var(--bordure);
+    border-radius: 16px;
+    padding: 36px;
+    margin-bottom: 32px;
+    scroll-margin-top: 80px;
+}
+
+section>h2 {
+    font-family: var(--titre);
+    font-size: 1.7rem;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 6px solid var(--trans);
+}
+
+/* 6. Introduction : article + aside en Flexbox */
+.intro-contenu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 36px;
+}
+
+.intro-contenu article {
+    flex: 2 1 380px;
+}
+
+.intro-contenu article p+p {
+    margin-top: 16px;
+}
+
+.intro-contenu aside {
+    flex: 1 1 260px;
+    align-self: flex-start;
+    background: var(--encre);
+    color: #fff;
+    border-radius: 14px;
+    padding: 26px;
+}
+
+aside h3 {
+    font-family: var(--titre);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #C5D2DF;
+    margin-bottom: 18px;
+}
+
+.chiffres {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.chiffres li {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.chiffres li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.chiffres strong {
+    font-family: var(--titre);
+    font-size: 2.3rem;
+    line-height: 1.1;
+}
+
+.chiffres li:nth-child(1) strong {
+    color: var(--emerg-clair);
+}
+
+.chiffres li:nth-child(2) strong {
+    color: var(--disp-clair);
+}
+
+.chiffres li:nth-child(3) strong {
+    color: var(--trans-clair);
+}
+
+.chiffres span {
+    font-size: 0.95rem;
+    color: #C5D2DF;
+}
+
+.source {
+    margin-top: 18px;
+    font-size: 0.8rem;
+    color: #9FB1C3;
+}
+
+/* 7. Tableau des catégories : lignes en forme de cartes */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+caption {
+    text-align: left;
+    color: var(--gris);
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+th {
+    text-align: left;
+    font-family: var(--titre);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--gris);
+    padding: 0 18px;
+}
+
+td {
+    background: var(--papier);
+    padding: 18px;
+    vertical-align: middle;
+    transition: background-color 0.25s;
+}
+
+td:first-child {
+    border-radius: 12px 0 0 12px;
+    border-left: 6px solid var(--bordure);
+}
+
+td:last-child {
+    border-radius: 0 12px 12px 0;
+    text-align: right;
+}
+
+tbody tr:hover td {
+    background: #E8EFF6;
+}
+
+tr.disp td:first-child {
+    border-left-color: var(--disp);
+}
+
+tr.trans td:first-child {
+    border-left-color: var(--trans);
+}
+
+tr.emerg td:first-child {
+    border-left-color: var(--emerg);
+}
+
+.cat {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.cat img {
+    width: 96px;
+    height: auto;
+    flex-shrink: 0;
+    background: var(--encre);
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.cat strong {
+    font-family: var(--titre);
+    font-size: 1.1rem;
+}
+
+td a {
+    display: inline-block;
+    padding: 9px 20px;
+    border: 2px solid currentColor;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.25s, color 0.25s, transform 0.25s;
+}
+
+tr.disp td a {
+    color: var(--disp);
+}
+
+tr.trans td a {
+    color: var(--trans);
+}
+
+tr.emerg td a {
+    color: var(--emerg);
+}
+
+tr.disp td a:hover {
+    background: var(--disp);
+    color: #fff;
+    transform: translateX(4px);
+}
+
+tr.trans td a:hover {
+    background: var(--trans);
+    color: #fff;
+    transform: translateX(4px);
+}
+
+tr.emerg td a:hover {
+    background: var(--emerg);
+    color: #fff;
+    transform: translateX(4px);
+}
+
+/* 8. Pied de page */
+footer {
+    background: var(--encre);
+    color: #C5D2DF;
+    padding: 44px 6% 28px;
+}
+
+.pied {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 36px 64px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+footer h3 {
+    font-family: var(--titre);
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+footer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+footer a {
+    color: #C5D2DF;
+    text-underline-offset: 4px;
+    transition: color 0.25s;
+}
+
+footer a:hover {
+    color: var(--trans-clair);
+}
+
+.credit {
+    max-width: 1100px;
+    margin: 32px auto 0;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.85rem;
+}
+
+/* 9. Animation d'arrivée du titre */
+@keyframes entree {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto;
+    }
+}
+
+/* 10. Responsive */
+@media screen and (max-width: 900px) {
+    header {
+        padding: 24px 5% 44px;
+    }
+
+    .bandeau {
+        gap: 28px;
+    }
+
+    section {
+        padding: 26px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    nav {
+        flex-direction: column;
+        position: static;
+    }
+
+    nav a {
+        width: 100%;
+    }
+
+    /* le tableau devient une pile de cartes */
+    thead {
+        position: absolute;
+        left: -9999px;
+    }
+
+    table,
+    tbody,
+    tr,
+    td {
+        display: block;
+    }
+
+    table {
+        border-spacing: 0;
+    }
+
+    tr {
+        margin-bottom: 14px;
+    }
+
+    td {
+        padding: 12px 16px;
+    }
+
+    td:first-child {
+        border-radius: 12px 12px 0 0;
+    }
+
+    td:last-child {
+        border-radius: 0 0 12px 12px;
+        text-align: left;
+    }
+}
